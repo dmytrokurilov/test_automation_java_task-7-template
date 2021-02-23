@@ -3,7 +3,7 @@ package com.epam.test.automation.java.practice7;
 import java.math.BigDecimal;
 
 public abstract class Deposit {
-    final BigDecimal amount;
+    public BigDecimal amount;
     final int period;
 
     public BigDecimal getAmount() {
