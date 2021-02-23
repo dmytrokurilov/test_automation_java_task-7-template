@@ -11,7 +11,7 @@ class BaseDeposit extends Deposit {
 
     @Override
     public BigDecimal income() {
-        BigDecimal percent = BigDecimal.valueOf(0.05);
+        BigDecimal percent = new BigDecimal("0.05");
         BigDecimal sumAdded;
         BigDecimal money = amount;
         for (int i = 0; i < period; i++) {
