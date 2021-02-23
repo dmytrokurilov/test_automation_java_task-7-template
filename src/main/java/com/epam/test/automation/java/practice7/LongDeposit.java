@@ -15,10 +15,10 @@ public class LongDeposit extends Deposit {
         BigDecimal incomeAmount = amount;
         for (BigDecimal i = new BigDecimal(7); i.compareTo(BigDecimal.valueOf(period)) <= 0; i = i.add(i)) {
 
-            incomeAmount = incomeAmount.multiply(BigDecimal.valueOf(1.15)).setScale(2, RoundingMode.DOWN);
+            incomeAmount = incomeAmount.multiply(BigDecimal.valueOf(1.15));
         }
 
-        return incomeAmount.subtract(amount);
+        return incomeAmount.setScale(2, RoundingMode.DOWN).subtract(amount);
 
     }
 
