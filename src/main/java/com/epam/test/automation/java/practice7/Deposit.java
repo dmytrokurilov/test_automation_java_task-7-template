@@ -1,10 +1,23 @@
 package com.epam.test.automation.java.practice7;
 
-/**
- * <summary>
- * Implement class according to description of task.
- * </summary>
- */
-public class Deposit {
-    //TODO: Delete this line and write your own solution;
+import java.math.BigDecimal;
+
+public abstract class Deposit {
+    final BigDecimal amount;
+    final int period;
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    protected Deposit(BigDecimal depositAmount, int depositPeriod) {
+        amount = depositAmount;
+        period = depositPeriod;
+    }
+
+    public abstract BigDecimal income();
 }
