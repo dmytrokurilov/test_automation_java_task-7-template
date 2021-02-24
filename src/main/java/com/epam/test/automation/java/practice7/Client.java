@@ -45,7 +45,7 @@ public class Client {
         if (deposits[number - 1] != null)
             return deposits[number - 1].income();
         else
-            return BigDecimal.valueOf(0);
+            return BigDecimal.ZERO.setScale(0);
     }
 
 }

@@ -13,6 +13,9 @@ public class LongDeposit extends Deposit {
     @Override
     public BigDecimal income() {
         BigDecimal incomeAmount = amount;
+        if (period < 6) {
+            return BigDecimal.ZERO.setScale(0, RoundingMode.DOWN);
+        }
         for (BigDecimal i = new BigDecimal(7); i.compareTo(BigDecimal.valueOf(period)) <= 0; i = i.add(i)) {
 
             incomeAmount = incomeAmount.multiply(BigDecimal.valueOf(1.15));
