@@ -15,7 +15,7 @@ class SpecialDeposit extends Deposit {
         for (BigDecimal i = BigDecimal.ONE; i.compareTo(BigDecimal.valueOf(period)) <= 0; i = i.add(BigDecimal.ONE)) {
             summa = summa.multiply(i.multiply(BigDecimal.valueOf(0.01)));
         }
-        return summa.setScale(2, RoundingMode.DOWN).subtract(amount);
+        return summa.setScale(2, RoundingMode.HALF_EVEN).subtract(amount);
 
     }
 }
