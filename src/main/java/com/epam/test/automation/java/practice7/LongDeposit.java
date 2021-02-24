@@ -21,7 +21,7 @@ public class LongDeposit extends Deposit {
             incomeAmount = incomeAmount.multiply(BigDecimal.valueOf(1.15));
         }
 
-        return incomeAmount.setScale(2, RoundingMode.HALF_EVEN).subtract(amount);
+        return incomeAmount.subtract(amount).setScale(2, RoundingMode.HALF_EVEN);
 
     }
 
