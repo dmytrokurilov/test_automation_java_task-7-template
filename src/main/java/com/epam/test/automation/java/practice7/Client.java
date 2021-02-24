@@ -44,14 +44,16 @@ public class Client {
     public BigDecimal getIncomeByNumber(int number) {
 
         BigDecimal incomeByNumber = BigDecimal.valueOf(0);
-        for (int i = 0; i < deposits.length; i++) {
+        if (deposits[number - 1] != null) {
+            for (int i = 0; i < deposits.length; i++) {
 
-            if (number == i + 1) {
-                incomeByNumber = deposits[i + 1].income();
+                if (number == i + 1) {
+                    incomeByNumber = deposits[i + 1].income();
+                }
             }
         }
         return incomeByNumber;
-        //if (deposits[number - 1] != null)
+
     }
 
 }
