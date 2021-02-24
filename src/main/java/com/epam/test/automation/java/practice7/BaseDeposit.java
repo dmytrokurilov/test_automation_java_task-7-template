@@ -1,6 +1,7 @@
 package com.epam.test.automation.java.practice7;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 class BaseDeposit extends Deposit {
     public BaseDeposit(BigDecimal depositAmount, int depositPeriod) {
@@ -11,13 +12,13 @@ class BaseDeposit extends Deposit {
 
     @Override
     public BigDecimal income() {
-        BigDecimal percent = new BigDecimal("0.05");
-        BigDecimal sumAdded;
-        BigDecimal money = amount;
-        for (int i = 0; i < period; i++) {
-            sumAdded = money.multiply(percent);
-            money = money.add(sumAdded);
+        BigDecimal result = amount;
+        for (int i = 1; i <= period; i++) {
+            result = result.add((result.multiply(BigDecimal.valueOf(5))).divide(BigDecimal.valueOf(100)));
         }
-        return money.subtract(amount);
+        result = result.setScale( 2, RoundingMode.HALF_DOWN);
+        result = result.subtract(amount);
+        return result;
     }
+
 }
