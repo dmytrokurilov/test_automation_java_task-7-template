@@ -3,20 +3,23 @@ package com.epam.test.automation.java.practice7;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-class SpecialDeposit extends Deposit {
-    public SpecialDeposit(BigDecimal depositAmount, int depositPeriod) {
+public class SpecialDeposit extends Deposit
+{
+    public SpecialDeposit( BigDecimal depositAmount, int depositPeriod)
+    {
         super(depositAmount, depositPeriod);
     }
 
     @Override
-    public BigDecimal income() {
-        BigDecimal summa = amount;
-
-        for (BigDecimal i = BigDecimal.ONE; i.compareTo(BigDecimal.valueOf(period)) <= 0; i = i.add(BigDecimal.ONE)) {
-            summa = summa.multiply(i.multiply(BigDecimal.valueOf(1.01)));
+    public BigDecimal income()
+    {
+        BigDecimal incomeAmount = amount;
+        for (int i = 1; i <= period; i++)
+        {
+            incomeAmount = incomeAmount.add((incomeAmount.multiply(BigDecimal.valueOf(i))).divide(BigDecimal.valueOf(100)));
         }
-        summa = summa.setScale(2, RoundingMode.HALF_DOWN);
-        return summa.subtract(amount);
-
+        incomeAmount = incomeAmount.setScale( 2, RoundingMode.DOWN );
+        incomeAmount = incomeAmount.subtract(amount);
+        return incomeAmount;
     }
 }

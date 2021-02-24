@@ -5,25 +5,20 @@ import java.math.RoundingMode;
 
 public class LongDeposit extends Deposit {
     public LongDeposit(BigDecimal depositAmount, int depositPeriod) {
-
         super(depositAmount, depositPeriod);
-
     }
 
     @Override
     public BigDecimal income() {
         BigDecimal incomeAmount = amount;
-        if (period < 6) {
-            return BigDecimal.ZERO.setScale(0, RoundingMode.DOWN);
+        if (period <= 6) {
+            return BigDecimal.ZERO.setScale(0);
         }
-        for (BigDecimal i = new BigDecimal(7); i.compareTo(BigDecimal.valueOf(period)) <= 0; i = i.add(i)) {
-
-            incomeAmount = incomeAmount.multiply(BigDecimal.valueOf(1.15));
+        for (int i = 7; i <= period; i++) {
+            incomeAmount = incomeAmount.add((incomeAmount.multiply(BigDecimal.valueOf(15))).divide(BigDecimal.valueOf(100)));
         }
-        incomeAmount = incomeAmount.setScale(2, RoundingMode.HALF_EVEN);
-
-        return incomeAmount.subtract(amount);
-
+        incomeAmount = incomeAmount.setScale(2, RoundingMode.HALF_DOWN);
+        incomeAmount = incomeAmount.subtract(amount);
+        return incomeAmount;
     }
-
 }
